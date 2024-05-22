@@ -2,19 +2,26 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from the Git repository
+                git url: 'https://github.com/chaithanya6/First.git', branch: 'main'
+            }
+        }
+
         stage('Build') {
             steps {
                 // Print the JDK version
-                sh 'java -version'
+                bat 'java -version'
                 // Compile the Java program
-                sh 'javac Hello.java'
+                bat 'javac Hello.java'
             }
         }
 
         stage('Test') {
             steps {
                 // Run the Java program
-                sh 'java Hello'
+                bat 'java Hello'
             }
         }
 
